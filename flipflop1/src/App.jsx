@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import HeroSection from "./components/HeroSection";
-import FloatingLogo from "./components/FloatingLogo";
 import Book from "./components/Book";
-import { useLogoTransition } from "./hooks/useLogoTransition";
 
 export default function IISPPRLanding() {
   const [scrollY, setScrollY] = useState(0);
@@ -29,32 +26,13 @@ export default function IISPPRLanding() {
 
   const scrollToPage = useCallback((index) => {
     if (containerRef.current) {
-      let targetScrollY = 0;
-      if (index >= 0) {
-        // Book scroll starts at viewportH.
-        // Each page index i is fully open at (i + 1) * viewportH.
-        targetScrollY = (index + 1) * viewportH;
-      }
+      const targetScrollY = index * viewportH;
       containerRef.current.scrollTo({
         top: targetScrollY,
         behavior: "smooth",
       });
     }
   }, [viewportH]);
-
-  const {
-    logoRef,
-    logoScale,
-    logoY,
-    floatY,
-    rotateX,
-    rotateZ,
-    logoOpacity,
-    logoLanded,
-    heroContentOpacity,
-    easedProgress,
-    transitionProgress
-  } = useLogoTransition({ scrollY, viewportH });
 
   return (
     <div
@@ -86,33 +64,11 @@ export default function IISPPRLanding() {
         }
       `}</style>
 
-      {/* HERO SECTION */}
-      <HeroSection
-        logoRef={logoRef}
-        heroContentOpacity={heroContentOpacity}
-        easedProgress={easedProgress}
-        transitionProgress={transitionProgress}
-        scrollToPage={scrollToPage}
-      />
-
-      {/* ANIMATED FLOATING LOGO */}
-      <FloatingLogo
-        logoScale={logoScale}
-        logoY={logoY}
-        floatY={floatY}
-        easedProgress={easedProgress}
-        rotateX={rotateX}
-        rotateZ={rotateZ}
-        logoOpacity={logoOpacity}
-        mounted={mounted}
-      />
-
       {/* BOOK SECTION */}
       <Book
         scrollY={scrollY}
         viewportH={viewportH}
-        logoLanded={logoLanded}
-        easedProgress={easedProgress}
+        logoLanded={true}
         scrollToPage={scrollToPage}
       />
     </div>

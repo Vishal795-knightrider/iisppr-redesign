@@ -5,7 +5,7 @@ import { PAGES } from "../data/bookContent";
 import { useBookScroll } from "../hooks/useBookScroll";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Book({ scrollY, viewportH, logoLanded, easedProgress, scrollToPage }) {
+export default function Book({ scrollY, viewportH, logoLanded = true, scrollToPage }) {
   const totalPages = PAGES.length;
   
   const {
@@ -48,8 +48,8 @@ export default function Book({ scrollY, viewportH, logoLanded, easedProgress, sc
         <div style={{
           textAlign: "center",
           marginBottom: 48,
-          opacity: easedProgress > 0.7 ? Math.min(1, (easedProgress - 0.7) / 0.3) : 0,
-          transform: `translateY(${easedProgress > 0.7 ? (20 - ((easedProgress - 0.7) / 0.3) * 20) : 20}px)`,
+          opacity: 1,
+          transform: "translateY(0)",
           transition: "none",
         }}>
           <p style={{ fontFamily: "Georgia, serif", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8A96E", opacity: 0.6, marginBottom: 10 }}>
@@ -72,8 +72,8 @@ export default function Book({ scrollY, viewportH, logoLanded, easedProgress, sc
             position: "relative",
             width: "min(380px, 90vw)",
             height: "min(540px, 75vh)",
-            opacity: easedProgress > 0.5 ? Math.min(1, (easedProgress - 0.5) / 0.4) : 0,
-            transform: `translateY(${easedProgress > 0.5 ? (30 - ((easedProgress - 0.5) / 0.4) * 30) : 30}px)`,
+            opacity: 1,
+            transform: "translateY(0)",
             transition: "none",
           }}
         >
@@ -170,7 +170,8 @@ export default function Book({ scrollY, viewportH, logoLanded, easedProgress, sc
         <div style={{
           marginTop: 80,
           textAlign: "center",
-          opacity: easedProgress > 0.8 ? Math.min(1, (easedProgress - 0.8) / 0.2) : 0,
+          opacity: currentPageIndex === 0 ? 1 : 0,
+          transition: "opacity 0.3s ease",
         }}>
           <p style={{ fontFamily: "Georgia, serif", fontSize: "0.72rem", color: "#f5f0e8", opacity: 0.3, letterSpacing: "0.1em" }}>
             Scroll down to explore chapters

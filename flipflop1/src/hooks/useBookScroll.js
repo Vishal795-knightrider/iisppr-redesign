@@ -1,6 +1,6 @@
 export function useBookScroll({ scrollY, viewportH, totalPages }) {
   // Global scroll-to-book-progress translation
-  const bookScrollStart = viewportH;
+  const bookScrollStart = 0;
   const bookScrollLength = (totalPages - 1) * viewportH;
   
   const bookScrollProgress = scrollY >= bookScrollStart
