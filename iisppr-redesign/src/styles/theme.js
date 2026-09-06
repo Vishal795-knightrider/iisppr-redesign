@@ -36,6 +36,25 @@ export const D = {
   rose:   "#d97066",
   roseSo: "rgba(217,112,102,0.10)",
 
+  // Ambient Glowing Orbs — Orange, Purple, Cyan
+  orange:   "#f97316",
+  orangeGl: "rgba(249,115,22,0.22)",
+  orangeSo: "rgba(249,115,22,0.12)",
+
+  purple:   "#a855f7",
+  purpleGl: "rgba(168,85,247,0.20)",
+  purpleSo: "rgba(168,85,247,0.10)",
+
+  cyan:     "#06b6d4",
+  cyanGl:   "rgba(6,182,212,0.22)",
+  cyanSo:   "rgba(6,182,212,0.10)",
+
+  // Frosted Glass tokens
+  glassBg:  "rgba(255,255,255,0.05)",
+  glassBgHover: "rgba(255,255,255,0.08)",
+  glassBorder: "rgba(255,255,255,0.10)",
+  glassBorderTop: "rgba(255,255,255,0.20)",
+
   // Text
   t0:  "#f5f4f0",   // near-white, warm
   t1:  "#c2bfb8",   // body
