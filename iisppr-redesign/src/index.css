@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Apple Glassmorphism & Antigravity Physics Styles */
+/* GSSoC & Apple Light Glassmorphism & Antigravity Physics Styles */
 
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
@@ -16,7 +16,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-16px);
+    transform: translateY(-12px);
   }
 }
 
@@ -25,7 +25,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-9px);
   }
 }
 
@@ -34,7 +34,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(9px);
+    transform: translateY(8px);
   }
 }
 
@@ -44,65 +44,47 @@
     transform: scale(1);
   }
   50% {
-    opacity: 0.7;
-    transform: scale(1.08);
+    opacity: 0.65;
+    transform: scale(1.06);
   }
 }
 
-@keyframes orb-float-1 {
-  0%, 100% {
-    transform: translate(-50%, -50%) translate(0, 0);
-  }
-  50% {
-    transform: translate(-50%, -50%) translate(30px, -25px);
-  }
-}
-
-@keyframes orb-float-2 {
-  0%, 100% {
-    transform: translate(-50%, -50%) translate(0, 0);
-  }
-  50% {
-    transform: translate(-50%, -50%) translate(-25px, 30px);
-  }
-}
-
-@keyframes shimmer {
+@keyframes marquee {
   0% {
-    background-position: -200% 0;
+    transform: translateX(0%);
   }
   100% {
-    background-position: 200% 0;
+    transform: translateX(-50%);
   }
 }
 
-/* Glassmorphism utility classes */
+/* Glassmorphism utility classes for GSSoC Light Theme */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(28px) saturate(1.8);
   -webkit-backdrop-filter: blur(28px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 48px rgba(11, 16, 38, 0.08), inset 0 1.5px 0 rgba(255, 255, 255, 1);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(1.8);
   -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 32px rgba(11, 16, 38, 0.06), inset 0 1.5px 0 rgba(255, 255, 255, 1);
 }
 
 .gold-metallic-text {
-  background: linear-gradient(135deg, #FFF8DC 0%, #FFD700 25%, #F5C542 50%, #D4AF37 75%, #996515 100%);
+  background: linear-gradient(135deg, #b45309 0%, #d97706 30%, #f59e0b 60%, #b45309 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gold-metallic-border {
-  border: 1px solid rgba(245, 197, 66, 0.35);
-  box-shadow: 0 0 30px rgba(245, 197, 66, 0.18), inset 0 1px 0 rgba(255, 248, 220, 0.35);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.15), inset 0 1.5px 0 rgba(255, 255, 255, 0.9);
 }
 
 .animate-float {
@@ -110,17 +92,23 @@
 }
 
 .animate-float-slow {
-  animation: float-slow 8.5s ease-in-out infinite;
+  animation: float-slow 8s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float-delayed 7s ease-in-out infinite 1.8s;
+  animation: float-delayed 7s ease-in-out infinite 1.5s;
 }
 
 .animate-float-reverse {
-  animation: float-reverse 6.8s ease-in-out infinite 0.9s;
+  animation: float-reverse 6.5s ease-in-out infinite 0.8s;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }

@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import { D } from "../styles/theme";
 import { RECOGNITION_CARDS } from "../data/constants";
 import { GridBg } from "./ui/GridBg";
-import { Orb } from "./ui/Orb";
 import { Reveal } from "./ui/Reveal";
 import { Tag } from "./ui/Tag";
 
-// Recognition and awards section component with Prestigious Metallic Gold and Apple Frosted Glass
+// Recognition and awards section component with GSSoC clean light aesthetic & prestigious gold accents
 export function RecognitionSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
@@ -18,43 +17,55 @@ export function RecognitionSection() {
     "animate-float-delayed",
   ];
 
+  const stripGradients = [
+    "linear-gradient(90deg, #f59e0b, #d97706)",
+    "linear-gradient(90deg, #1FB6A6, #5EEAD4)",
+    "linear-gradient(90deg, #6366f1, #818cf8)",
+  ];
+
   return (
     <section id="recognition" style={{
-      background: D.bg,
+      background: "#F8FAFC",
       position: "relative",
       overflow: "hidden",
-      paddingTop: 110,
-      paddingBottom: 110,
-      borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+      paddingTop: 100,
+      paddingBottom: 100,
+      borderTop: "1px solid #E2E8F0",
     }}>
-      <GridBg opacity={0.02} />
+      <GridBg opacity={0.04} />
       
-      {/* Radiant blurred glowing orbs: Deep Orange, Soft Purple, Cyan */}
-      <Orb x="50%" y="20%" r={650} color={D.orangeGl} opacity={0.28} blur={95} anim="animate-pulse-glow" />
-      <Orb x="10%" y="75%" r={550} color={D.purpleGl} opacity={0.24} blur={90} anim="animate-float-slow" />
-      <Orb x="90%" y="80%" r={500} color={D.cyanGl} opacity={0.22} blur={85} anim="animate-float-reverse" />
+      {/* Soft ambient glows */}
+      <div style={{
+        position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)", width: 700, height: 700,
+        background: "radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%)",
+        filter: "blur(90px)", pointerEvents: "none", zIndex: 0,
+      }} />
 
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 clamp(1rem,4vw,2.5rem)", position: "relative", zIndex: 2 }}>
         
         {/* Section Header */}
-        <Reveal style={{ textAlign: "center", marginBottom: 70 }}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/15 shadow-[0_4px_20px_rgba(245,197,66,0.15)] mb-3">
-            <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: "0.6px", color: D.goldBr, textTransform: "uppercase", fontFamily: D.sans }}>
+        <Reveal style={{ textAlign: "center", marginBottom: 65 }}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3"
+            style={{
+              background: "rgba(245, 158, 11, 0.09)",
+              border: "1.5px solid rgba(245, 158, 11, 0.25)",
+            }}
+          >
+            <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: "0.5px", color: "#d97706", textTransform: "uppercase", fontFamily: D.sans }}>
               🏆 Recognition & Awards
             </span>
           </div>
 
           <h2 style={{
-            fontFamily: D.serif, fontSize: "clamp(32px, 5vw, 56px)",
+            fontFamily: D.sans, fontSize: "clamp(32px, 4.8vw, 54px)",
             fontWeight: 900, letterSpacing: "-1.8px",
-            color: D.t0, margin: "16px 0 14px", lineHeight: 1.08,
+            color: D.t0, margin: "14px 0 12px", lineHeight: 1.08,
           }}>
             Think critically.
             <span style={{
-              display: "block", fontStyle: "italic",
-              background: "linear-gradient(110deg, #FFF8DC 0%, #FFD700 25%, #F5C542 50%, #7dcfac 80%, #38bdf8 100%)",
+              display: "block",
+              background: "linear-gradient(90deg, #d97706 0%, #f59e0b 50%, #1FB6A6 100%)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-              filter: "drop-shadow(0 2px 18px rgba(245, 197, 66, 0.3))",
             }}>Write boldly. Compete for the Gold.</span>
           </h2>
 
@@ -63,11 +74,10 @@ export function RecognitionSection() {
           </p>
         </Reveal>
 
-        {/* Benefits & Recognition Cards Grid with Antigravity Physics */}
+        {/* Benefits & Recognition Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch recognition-grid">
           {RECOGNITION_CARDS.map((card, i) => {
             const isGold = i === 0;
-            const isISBN = i === 1;
             const isHovered = hoveredIdx === i;
             const floatClass = floatClasses[i % floatClasses.length];
 
@@ -80,67 +90,47 @@ export function RecognitionSection() {
                 >
                   <motion.div
                     animate={{
-                      y: isHovered ? -14 : 0,
-                      scale: isHovered ? 1.02 : 1,
+                      y: isHovered ? -12 : 0,
+                      scale: isHovered ? 1.015 : 1,
                     }}
                     transition={{ duration: 0.32 }}
                     className="rounded-[24px] p-7 sm:p-8 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300"
                     style={{
-                      background: isGold
-                        ? "rgba(255, 255, 255, 0.055)"
-                        : "rgba(255, 255, 255, 0.04)",
-                      backdropFilter: "blur(30px) saturate(1.8)",
-                      WebkitBackdropFilter: "blur(30px) saturate(1.8)",
+                      background: "rgba(255, 255, 255, 0.88)",
+                      backdropFilter: "blur(28px) saturate(1.8)",
+                      WebkitBackdropFilter: "blur(28px) saturate(1.8)",
                       border: isGold
-                        ? (isHovered ? "1px solid rgba(255, 215, 0, 0.6)" : "1px solid rgba(245, 197, 66, 0.35)")
-                        : isISBN
-                          ? (isHovered ? "1px solid rgba(125, 207, 172, 0.5)" : "1px solid rgba(94, 175, 142, 0.28)")
-                          : (isHovered ? "1px solid rgba(168, 85, 247, 0.5)" : "1px solid rgba(157, 143, 220, 0.25)"),
+                        ? (isHovered ? "1.5px solid rgba(245, 158, 11, 0.6)" : "1.5px solid rgba(245, 158, 11, 0.3)")
+                        : (isHovered ? "1.5px solid rgba(31, 182, 166, 0.5)" : "1.5px solid rgba(226, 232, 240, 0.9)"),
                       boxShadow: isHovered
-                        ? isGold
-                          ? "0 32px 64px -10px rgba(245, 197, 66, 0.35), 0 0 45px rgba(245, 197, 66, 0.25), inset 0 1px 0 rgba(255, 248, 220, 0.45)"
-                          : isISBN
-                            ? "0 30px 60px -10px rgba(94, 175, 142, 0.35), 0 0 40px rgba(94, 175, 142, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35)"
-                            : "0 30px 60px -10px rgba(168, 85, 247, 0.35), 0 0 40px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35)"
-                        : isGold
-                          ? "0 20px 48px rgba(0, 0, 0, 0.45), 0 0 35px rgba(245, 197, 66, 0.15), inset 0 1px 0 rgba(255, 248, 220, 0.3)"
-                          : "0 20px 45px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.16)",
+                        ? "0 28px 56px rgba(11, 16, 38, 0.12), inset 0 1.5px 0 rgba(255,255,255,1)"
+                        : "0 16px 40px rgba(11, 16, 38, 0.06), inset 0 1.5px 0 rgba(255,255,255,1)",
                     }}
                   >
-                    {/* Prestigious Specular Ambient Glow Top */}
-                    <div
-                      className="absolute -top-20 left-1/2 -translate-x-1/2 w-48 h-32 pointer-events-none transition-opacity duration-300"
-                      style={{
-                        background: isGold
-                          ? "radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%)"
-                          : isISBN
-                            ? "radial-gradient(circle, rgba(94,175,142,0.25) 0%, transparent 70%)"
-                            : "radial-gradient(circle, rgba(168,85,247,0.25) 0%, transparent 70%)",
-                        opacity: isHovered ? 0.9 : 0.45,
-                      }}
-                    />
-
                     <div>
-                      {/* Floating Icon with Metallic Frosted Ring */}
+                      {/* Top Accent Strip */}
                       <div
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300"
                         style={{
-                          background: isGold
-                            ? "linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(201,151,58,0.1) 100%)"
-                            : card.soft,
-                          border: isGold
-                            ? "1px solid rgba(255, 215, 0, 0.4)"
-                            : `1px solid ${card.border}`,
-                          boxShadow: isGold
-                            ? "0 8px 24px rgba(245, 197, 66, 0.25), inset 0 1px 0 rgba(255,248,220,0.4)"
-                            : "0 6px 20px rgba(0,0,0,0.25)",
-                          transform: isHovered ? "scale(1.1) rotate(4deg)" : "scale(1)",
+                          height: 3.5,
+                          borderRadius: 3,
+                          width: 38,
+                          marginBottom: 18,
+                          background: stripGradients[i],
+                        }}
+                      />
+
+                      {/* Icon */}
+                      <div
+                        className="w-13 h-13 rounded-2xl flex items-center justify-center text-2xl mb-4"
+                        style={{
+                          background: isGold ? "rgba(245, 158, 11, 0.12)" : "rgba(31, 182, 166, 0.08)",
+                          border: isGold ? "1px solid rgba(245, 158, 11, 0.25)" : "1px solid rgba(31, 182, 166, 0.2)",
                         }}
                       >
                         {card.icon}
                       </div>
 
-                      {/* Subtitle Badge */}
+                      {/* Subtitle */}
                       <div
                         style={{
                           fontSize: 11,
@@ -148,58 +138,48 @@ export function RecognitionSection() {
                           letterSpacing: "0.8px",
                           textTransform: "uppercase",
                           fontFamily: D.sans,
-                          marginBottom: 8,
-                          color: isGold ? D.goldBr : card.color,
+                          marginBottom: 6,
+                          color: isGold ? "#d97706" : D.teal,
                         }}
                       >
                         {card.subtitle}
                       </div>
 
-                      {/* Title with Rich Metallic Gold Gradient for Gold Medal, and Prestigious Silver/Emerald for ISBN */}
+                      {/* Title */}
                       <div
                         style={{
-                          fontFamily: D.serif,
-                          fontSize: 23,
-                          fontWeight: 900,
-                          letterSpacing: "-0.5px",
-                          marginBottom: 12,
-                          background: isGold
-                            ? "linear-gradient(135deg, #FFF8DC 0%, #FFD700 25%, #F5C542 50%, #D4AF37 75%, #996515 100%)"
-                            : isISBN
-                              ? "linear-gradient(135deg, #F0FDF4 0%, #7dcfac 50%, #38bdf8 100%)"
-                              : "linear-gradient(135deg, #FAF5FF 0%, #c084fc 60%, #e879f9 100%)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundClip: "text",
-                          filter: isGold
-                            ? "drop-shadow(0 2px 10px rgba(245, 197, 66, 0.3))"
-                            : "none",
+                          fontFamily: D.sans,
+                          fontSize: 22,
+                          fontWeight: 800,
+                          letterSpacing: "-0.4px",
+                          marginBottom: 10,
+                          color: D.t0,
                         }}
                       >
                         {card.title}
                       </div>
 
-                      <p style={{ fontSize: 13.5, color: D.t2, lineHeight: 1.7, fontFamily: D.sans, marginBottom: 22 }}>
+                      <p style={{ fontSize: 13.5, color: D.t2, lineHeight: 1.7, fontFamily: D.sans, marginBottom: 20 }}>
                         {card.body}
                       </p>
                     </div>
                     
-                    {/* Benefits bullet points in frosted glass list */}
-                    <div className="flex flex-col gap-2.5 pt-4 border-t border-white/[0.08]">
+                    {/* Benefits bullet points */}
+                    <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-200">
                       {card.bullets.map(b => (
                         <div key={b} className="flex gap-2.5 items-start">
                           <span
                             style={{
-                              color: isGold ? D.goldBr : card.color,
+                              color: isGold ? "#d97706" : D.teal,
                               fontSize: 13,
                               flexShrink: 0,
                               marginTop: 2,
-                              filter: isGold ? "drop-shadow(0 0 6px rgba(245, 197, 66, 0.4))" : "none",
+                              fontWeight: 900,
                             }}
                           >
                             ✦
                           </span>
-                          <span style={{ fontSize: 13, color: D.t1, fontFamily: D.sans, lineHeight: 1.5 }}>
+                          <span style={{ fontSize: 13, color: D.t1, fontFamily: D.sans, lineHeight: 1.5, fontWeight: 500 }}>
                             {b}
                           </span>
                         </div>

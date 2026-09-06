@@ -3,17 +3,16 @@ import { motion, useInView } from "framer-motion";
 import { D, ease } from "../styles/theme";
 import { PLANS } from "../data/constants";
 import { GridBg } from "./ui/GridBg";
-import { Orb } from "./ui/Orb";
 import { Reveal } from "./ui/Reveal";
 import { Tag } from "./ui/Tag";
 
-// Helper component for individual pricing plan cards with Apple Glassmorphism and Antigravity Hover Physics
+// Helper component for individual pricing plan cards in GSSoC Light Frosted Glass
 function PlanCard({ plan, index }) {
   const [hov, setHov] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
-  // Antigravity float animation classes based on index to create organic, non-synchronized floating
+  // Floating classes for organic antigravity floating physics
   const floatClasses = [
     "animate-float",
     "animate-float-slow",
@@ -21,13 +20,12 @@ function PlanCard({ plan, index }) {
   ];
   const floatClass = floatClasses[index % floatClasses.length];
 
-  // Tailored glow shadows on hover
-  const glowColors = {
-    student: "rgba(94, 175, 142, 0.35)",
-    prelaunch: "rgba(245, 197, 66, 0.45)",
-    alumni: "rgba(168, 85, 247, 0.35)",
+  // Top strip accent gradients per plan
+  const stripGradients = {
+    student: "linear-gradient(90deg, #10b981, #34d399)",
+    prelaunch: "linear-gradient(90deg, #1FB6A6, #5EEAD4)",
+    alumni: "linear-gradient(90deg, #6366f1, #818cf8)",
   };
-  const activeGlow = glowColors[plan.id] || "rgba(255, 255, 255, 0.25)";
 
   return (
     <motion.div
@@ -45,9 +43,9 @@ function PlanCard({ plan, index }) {
         <div
           className="absolute -inset-[2px] rounded-[26px] pointer-events-none transition-opacity duration-500"
           style={{
-            background: "linear-gradient(135deg, rgba(255,215,0,0.7) 0%, rgba(249,115,22,0.5) 50%, rgba(168,85,247,0.4) 100%)",
+            background: "linear-gradient(135deg, rgba(31,182,166,0.5) 0%, rgba(94,234,212,0.3) 50%, rgba(99,102,241,0.25) 100%)",
             filter: "blur(6px)",
-            opacity: hov ? 0.9 : 0.45,
+            opacity: hov ? 0.9 : 0.4,
             zIndex: 0,
           }}
         />
@@ -58,19 +56,13 @@ function PlanCard({ plan, index }) {
         <div
           className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase transition-transform duration-300"
           style={{
-            background: plan.featured
-              ? "linear-gradient(135deg, #ffd700 0%, #c9973a 100%)"
-              : "rgba(255, 255, 255, 0.08)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: plan.featured
-              ? "1px solid rgba(255, 248, 220, 0.6)"
-              : `1px solid ${plan.bNorm}`,
-            color: plan.featured ? "#09090b" : plan.accent,
+            background: plan.featured ? D.indigo : "#ffffff",
+            border: plan.featured ? "none" : "1px solid #cbd5e1",
+            color: plan.featured ? "#ffffff" : D.t0,
             fontFamily: D.sans,
             boxShadow: plan.featured
-              ? "0 4px 20px rgba(245, 197, 66, 0.4)"
-              : "0 4px 16px rgba(0, 0, 0, 0.4)",
+              ? "0 4px 16px rgba(11, 16, 38, 0.25)"
+              : "0 4px 12px rgba(0, 0, 0, 0.08)",
             transform: hov ? "translateX(-50%) translateY(-3px) scale(1.05)" : "translateX(-50%) scale(1)",
           }}
         >
@@ -78,54 +70,58 @@ function PlanCard({ plan, index }) {
         </div>
       )}
 
-      {/* Main Glass Card with Smooth Antigravity Levitation on Hover */}
+      {/* Main GSSoC Light Frosted Glass Card */}
       <motion.div
         onHoverStart={() => setHov(true)}
         onHoverEnd={() => setHov(false)}
         animate={{
-          y: hov ? -14 : 0,
-          scale: hov ? 1.02 : 1,
+          y: hov ? -12 : 0,
+          scale: hov ? 1.015 : 1,
           boxShadow: hov
-            ? `0 35px 70px -10px ${activeGlow}, 0 20px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.35)`
+            ? "0 30px 60px rgba(11, 16, 38, 0.12), inset 0 1.5px 0 rgba(255,255,255,1)"
             : plan.featured
-              ? `0 24px 50px rgba(0,0,0,0.5), 0 0 30px rgba(245,197,66,0.15), inset 0 1px 0 rgba(255,255,255,0.2)`
-              : `0 20px 45px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15)`,
+              ? "0 22px 50px rgba(11, 16, 38, 0.09), inset 0 1.5px 0 rgba(255,255,255,1)"
+              : "0 16px 40px rgba(11, 16, 38, 0.06), inset 0 1.5px 0 rgba(255,255,255,1)",
         }}
         transition={{ duration: 0.32, ease }}
         className="relative z-10 rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-full overflow-hidden transition-colors duration-300"
         style={{
-          background: plan.featured
-            ? "rgba(255, 255, 255, 0.055)"
-            : "rgba(255, 255, 255, 0.04)",
-          backdropFilter: "blur(30px) saturate(1.9)",
-          WebkitBackdropFilter: "blur(30px) saturate(1.9)",
-          border: `1px solid ${hov ? (plan.featured ? "rgba(255,215,0,0.45)" : plan.bHov) : (plan.featured ? "rgba(255,215,0,0.25)" : "rgba(255,255,255,0.10)")}`,
+          background: "rgba(255, 255, 255, 0.88)",
+          backdropFilter: "blur(28px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(28px) saturate(1.8)",
+          border: plan.featured
+            ? "1.5px solid rgba(31, 182, 166, 0.4)"
+            : "1.5px solid rgba(255, 255, 255, 0.95)",
         }}
       >
-        {/* Ambient Top Light Beam (Apple Specular Highlight) */}
-        <div
-          className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-32 pointer-events-none transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(circle, ${plan.accentGl} 0%, transparent 70%)`,
-            opacity: hov ? 0.9 : 0.45,
-          }}
-        />
-
         <div>
+          {/* GSSoC Top Accent Strip */}
+          <div
+            style={{
+              height: 3.5,
+              borderRadius: 3,
+              width: 38,
+              marginBottom: 16,
+              background: stripGradients[plan.id] || "linear-gradient(90deg, #1FB6A6, #5EEAD4)",
+            }}
+          />
+
           {/* Plan tag */}
           <div className="mb-4">
-            <Tag color={plan.tagColor} bg={plan.tagBg} border={plan.tagBorder}>
+            <Tag color={plan.id === "prelaunch" ? D.teal : plan.accent}
+                 bg={plan.id === "prelaunch" ? "rgba(31, 182, 166, 0.09)" : plan.tagBg}
+                 border={plan.id === "prelaunch" ? "1px solid rgba(31, 182, 166, 0.22)" : plan.tagBorder}>
               {plan.tag}
             </Tag>
           </div>
 
           <div
             style={{
-              fontFamily: D.serif,
-              fontSize: 26,
-              fontWeight: 900,
+              fontFamily: D.sans,
+              fontSize: 24,
+              fontWeight: 800,
               color: D.t0,
-              letterSpacing: "-0.6px",
+              letterSpacing: "-0.5px",
               marginBottom: 8,
             }}
           >
@@ -145,31 +141,29 @@ function PlanCard({ plan, index }) {
             {plan.desc}
           </p>
 
-          {/* Frosted Glass Price Block */}
+          {/* Price Block in Soft Light Slate */}
           <div
             className="rounded-2xl p-4 sm:p-5 mb-6"
             style={{
-              background: "rgba(0, 0, 0, 0.28)",
-              backdropFilter: "blur(16px)",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
-              boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+              background: "#F8FAFC",
+              border: "1px solid #E2E8F0",
             }}
           >
             <div className="flex justify-between items-center mb-2.5">
-              <span style={{ fontSize: 12, color: D.t3, fontFamily: D.sans }}>Actual Fee</span>
-              <span style={{ fontSize: 14, color: D.t3, textDecoration: "line-through", fontFamily: D.sans }}>
+              <span style={{ fontSize: 12, color: D.t3, fontFamily: D.sans, fontWeight: 500 }}>Actual Fee</span>
+              <span style={{ fontSize: 14, color: D.t3, textDecoration: "line-through", fontFamily: D.sans, fontWeight: 500 }}>
                 ₹{plan.actualFee.toLocaleString("en-IN")}
               </span>
             </div>
             <div className="flex justify-between items-end">
               <div>
-                <div style={{ fontSize: 11, color: D.t2, fontFamily: D.sans, marginBottom: 2 }}>Offer Price</div>
+                <div style={{ fontSize: 11, color: D.t2, fontFamily: D.sans, marginBottom: 2, fontWeight: 600 }}>Offer Price</div>
                 <div className="flex items-baseline gap-1">
-                  <span style={{ fontSize: 18, color: plan.accent, fontFamily: D.sans, fontWeight: 800 }}>₹</span>
+                  <span style={{ fontSize: 18, color: D.t0, fontFamily: D.sans, fontWeight: 800 }}>₹</span>
                   <span
                     style={{
-                      fontFamily: D.serif,
-                      fontSize: 44,
+                      fontFamily: D.sans,
+                      fontSize: 42,
                       fontWeight: 900,
                       color: D.t0,
                       letterSpacing: "-2px",
@@ -181,16 +175,16 @@ function PlanCard({ plan, index }) {
                 </div>
               </div>
               <div
-                className="px-3 py-2 rounded-xl text-center shadow-sm"
+                className="px-3 py-1.5 rounded-full text-center shadow-xs"
                 style={{
-                  background: plan.accentSo,
-                  border: `1px solid ${plan.bNorm}`,
+                  background: "rgba(31, 182, 166, 0.12)",
+                  border: "1px solid rgba(31, 182, 166, 0.25)",
                 }}
               >
-                <div style={{ fontFamily: D.serif, fontSize: 20, fontWeight: 900, color: plan.accent }}>
+                <div style={{ fontFamily: D.sans, fontSize: 16, fontWeight: 800, color: D.teal }}>
                   {plan.saving}
                 </div>
-                <div style={{ fontSize: 10, color: D.t3, fontFamily: D.sans }}>off</div>
+                <div style={{ fontSize: 9.5, color: D.teal, fontFamily: D.sans, fontWeight: 600 }}>OFF</div>
               </div>
             </div>
           </div>
@@ -200,18 +194,15 @@ function PlanCard({ plan, index }) {
             href="#pricing"
             whileHover={{ scale: 1.025, translateY: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl mb-6 text-sm font-bold tracking-tight text-center cursor-pointer transition-all duration-300"
+            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full mb-6 text-sm font-bold tracking-tight text-center cursor-pointer transition-all duration-300"
             style={{
-              background: plan.ctaFilled
-                ? "linear-gradient(135deg, #ffd700 0%, #c9973a 100%)"
-                : "rgba(255, 255, 255, 0.05)",
-              backdropFilter: "blur(16px)",
-              border: plan.ctaFilled ? "1px solid rgba(255, 248, 220, 0.4)" : `1px solid ${plan.bNorm}`,
-              color: plan.ctaFilled ? "#09090b" : plan.accent,
+              background: plan.ctaFilled ? D.indigo : "#ffffff",
+              border: plan.ctaFilled ? "none" : "1.5px solid #cbd5e1",
+              color: plan.ctaFilled ? "#ffffff" : D.t0,
               fontFamily: D.sans,
               boxShadow: plan.ctaFilled
-                ? "0 8px 24px rgba(245, 197, 66, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4)"
-                : "0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+                ? "0 6px 20px rgba(11, 16, 38, 0.2)"
+                : "0 2px 8px rgba(0, 0, 0, 0.04)",
             }}
           >
             <span>{plan.cta}</span>
@@ -219,7 +210,7 @@ function PlanCard({ plan, index }) {
           </motion.a>
 
           {/* Divider line */}
-          <div className="h-[1px] bg-white/[0.08] mb-5" />
+          <div className="h-[1px] bg-slate-200 mb-5" />
 
           {/* Plan features list */}
           <div className="flex flex-col gap-2.5">
@@ -227,24 +218,24 @@ function PlanCard({ plan, index }) {
               <div
                 key={f.text}
                 className="flex items-center gap-2.5 transition-opacity duration-200"
-                style={{ opacity: f.yes ? 1 : 0.32 }}
+                style={{ opacity: f.yes ? 1 : 0.35 }}
               >
                 <div
-                  className="w-4 h-4 rounded-md flex-shrink-0 flex items-center justify-center text-[9px] font-black"
+                  className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-black"
                   style={{
-                    background: f.yes ? plan.accentSo : "rgba(255,255,255,0.03)",
-                    border: `1px solid ${f.yes ? plan.bNorm : "rgba(255,255,255,0.05)"}`,
-                    color: f.yes ? plan.accent : D.t3,
+                    background: f.yes ? "rgba(31, 182, 166, 0.12)" : "#f1f5f9",
+                    color: f.yes ? D.teal : D.t3,
                   }}
                 >
                   {f.yes ? "✓" : "—"}
                 </div>
                 <span
                   style={{
-                    fontSize: 12.5,
+                    fontSize: 13,
                     color: f.yes ? D.t1 : D.t3,
                     fontFamily: D.sans,
                     lineHeight: 1.4,
+                    fontWeight: 500,
                   }}
                 >
                   {f.text}
@@ -258,11 +249,11 @@ function PlanCard({ plan, index }) {
         <div
           className="mt-6 p-3 rounded-xl text-[11.5px] leading-relaxed"
           style={{
-            background: "rgba(255, 255, 255, 0.03)",
-            backdropFilter: "blur(12px)",
-            border: `1px solid ${plan.bNorm}`,
-            color: plan.noteColor,
+            background: "#F8FAFC",
+            border: "1px solid #E2E8F0",
+            color: D.t2,
             fontFamily: D.sans,
+            fontWeight: 500,
           }}
         >
           {plan.note}
@@ -272,39 +263,51 @@ function PlanCard({ plan, index }) {
   );
 }
 
-// Pricing / Enrollment section component with Apple Glassmorphism and Blurred Ambient Atmosphere
+// Pricing / Enrollment section component with GSSoC clean light theme & Apple Glassmorphism
 export function PricingSection() {
   return (
     <section id="pricing" style={{
-      background: D.bg,
+      background: "#F8FAFC",
       position: "relative",
       overflow: "hidden",
-      paddingTop: 110,
-      paddingBottom: 110,
-      borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+      paddingTop: 100,
+      paddingBottom: 100,
+      borderTop: "1px solid #E2E8F0",
     }}>
-      <GridBg opacity={0.02} />
+      <GridBg opacity={0.04} />
       
-      {/* Radiant blurred glowing orbs: Deep Orange, Soft Purple, Cyan */}
-      <Orb x="10%" y="30%" r={650} color={D.orangeGl} opacity={0.30} blur={95} anim="animate-pulse-glow" />
-      <Orb x="90%" y="55%" r={600} color={D.purpleGl} opacity={0.28} blur={90} anim="animate-float-slow" />
-      <Orb x="50%" y="85%" r={500} color={D.cyanGl} opacity={0.22} blur={85} anim="animate-float-reverse" />
+      {/* Soft luminous ambient glows */}
+      <div style={{
+        position: "absolute", top: "20%", left: "-10%", width: 700, height: 700,
+        background: "radial-gradient(circle, rgba(31,182,166,0.12) 0%, transparent 70%)",
+        filter: "blur(80px)", pointerEvents: "none", zIndex: 0,
+      }} />
+      <div style={{
+        position: "absolute", bottom: "10%", right: "-10%", width: 650, height: 650,
+        background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 70%)",
+        filter: "blur(80px)", pointerEvents: "none", zIndex: 0,
+      }} />
 
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 clamp(1rem,4vw,2.5rem)", position: "relative", zIndex: 2 }}>
 
         {/* Section header */}
-        <Reveal style={{ textAlign: "center", marginBottom: 64 }}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/15 shadow-[0_4px_20px_rgba(249,115,22,0.15)] mb-3">
-            <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: "0.6px", color: D.goldBr, textTransform: "uppercase", fontFamily: D.sans }}>
+        <Reveal style={{ textAlign: "center", marginBottom: 60 }}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-3"
+            style={{
+              background: "rgba(31, 182, 166, 0.08)",
+              border: "1.5px solid rgba(31, 182, 166, 0.25)",
+            }}
+          >
+            <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: "0.5px", color: D.teal, textTransform: "uppercase", fontFamily: D.sans }}>
               🎟 Enrollment Offers
             </span>
           </div>
           
           <h2 style={{
-            fontFamily: D.serif,
-            fontSize: "clamp(34px, 5.2vw, 58px)",
-            fontWeight: 900, letterSpacing: "-2px",
-            color: D.t0, margin: "16px 0", lineHeight: 1.05,
+            fontFamily: D.sans,
+            fontSize: "clamp(32px, 4.8vw, 54px)",
+            fontWeight: 900, letterSpacing: "-1.8px",
+            color: D.t0, margin: "14px 0", lineHeight: 1.05,
           }}>
             Choose your offer type
           </h2>
@@ -315,24 +318,24 @@ export function PricingSection() {
             Every offer accesses the same world-class curriculum. Your category determines pricing and benefits.
           </p>
           
-          {/* Actual fee comparison pill with Apple Glassmorphism */}
-          <div className="inline-flex items-center gap-4 px-6 py-2.5 rounded-full bg-white/[0.05] backdrop-blur-2xl border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.3),_inset_0_1px_0_rgba(255,255,255,0.25)] animate-float-slow">
-            <span style={{ fontSize: 13, color: D.t2, fontFamily: D.sans }}>Actual Program Fee</span>
-            <span style={{ fontFamily: D.serif, fontSize: 20, fontWeight: 900, color: D.t0, letterSpacing: "-0.5px" }}>₹8,000</span>
-            <div style={{ width: 1, height: 18, background: "rgba(255, 255, 255, 0.15)" }} />
-            <span style={{ fontSize: 12.5, color: D.goldBr, fontWeight: 700, fontFamily: D.sans }}>Save up to 50% →</span>
+          {/* Actual fee comparison pill */}
+          <div className="inline-flex items-center gap-4 px-6 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm animate-float-slow">
+            <span style={{ fontSize: 13, color: D.t2, fontFamily: D.sans, fontWeight: 500 }}>Actual Program Fee</span>
+            <span style={{ fontFamily: D.sans, fontSize: 18, fontWeight: 900, color: D.t0, letterSpacing: "-0.5px" }}>₹8,000</span>
+            <div style={{ width: 1, height: 16, background: "#cbd5e1" }} />
+            <span style={{ fontSize: 13, color: D.teal, fontWeight: 700, fontFamily: D.sans }}>Save up to 50% →</span>
           </div>
         </Reveal>
 
-        {/* Plan cards grid with responsive stacking and antigravity physics */}
+        {/* Plan cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch pricing-grid">
           {PLANS.map((plan, i) => (
             <PlanCard key={plan.id} plan={plan} index={i} />
           ))}
         </div>
 
-        {/* Trust factors bottom bar with Frosted Glass pills */}
-        <Reveal delay={0.3} style={{ marginTop: 60, display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap" }}>
+        {/* Trust factors bottom bar */}
+        <Reveal delay={0.3} style={{ marginTop: 55, display: "flex", justifyContent: "center", gap: 28, flexWrap: "wrap" }}>
           {[
             { icon: "🔒", text: "Secure Payment" },
             { icon: "↩️", text: "Review Before Enrolling" },
@@ -341,8 +344,8 @@ export function PricingSection() {
           ].map(t => (
             <div
               key={t.text}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] backdrop-blur-xl border border-white/10 transition-transform duration-300 hover:-translate-y-1"
-              style={{ fontSize: 12.5, color: D.t2, fontFamily: D.sans, boxShadow: "0 4px 16px rgba(0,0,0,0.2)" }}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 shadow-xs transition-transform duration-300 hover:-translate-y-1"
+              style={{ fontSize: 12.5, fontFamily: D.sans, fontWeight: 600 }}
             >
               <span>{t.icon}</span>
               <span>{t.text}</span>

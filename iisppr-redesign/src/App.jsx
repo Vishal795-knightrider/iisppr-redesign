@@ -9,22 +9,23 @@ import { RecognitionSection } from "./components/RecognitionSection";
 import { FAQSection } from "./components/FAQSection";
 import { FinalCTA } from "./components/FinalCTA";
 
-// Main application component
+// Main application component with GSSoC-inspired clean aesthetic & Apple Glassmorphism
 export default function App() {
   return (
-    <div style={{ background: D.bg, minHeight: "100vh", overflowX: "hidden" }}>
-      {/* Global CSS block preserving exact styling */}
+    <div style={{ background: "#ffffff", minHeight: "100vh", overflowX: "hidden", color: D.t0 }}>
+      {/* Global CSS block */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,100..900;1,100..900&family=Inter:wght@400;500;600;700;800&display=swap');
         @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,600,700,800,900&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background: #09090b; }
+        body { background: #ffffff; color: #0B1026; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: rgba(31,182,166,0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(31,182,166,0.6); }
 
         a { cursor: pointer; }
         button { cursor: pointer; font-family: inherit; }
@@ -40,7 +41,7 @@ export default function App() {
           /* Navbar mobile toggles */
           .desktop-nav-links, .desktop-nav-cta { display: none !important; }
           .mobile-nav-toggle { display: flex !important; }
-          .navbar-container { width: 100% !important; border-radius: 16px !important; }
+          .navbar-container { width: calc(100% - 2rem) !important; border-radius: 16px !important; }
         }
         @media (max-width: 640px) {
           .pricing-grid { grid-template-columns: 1fr !important; }
