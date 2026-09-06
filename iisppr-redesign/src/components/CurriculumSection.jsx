@@ -41,7 +41,7 @@ export function CurriculumSection() {
         filter: "blur(80px)", pointerEvents: "none", zIndex: 0,
       }} />
 
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 clamp(1rem,4vw,2.5rem)", position: "relative", zIndex: 2 }}>
+      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 clamp(1rem,4vw,2.5rem)", position: "relative", zIndex: 2 }}>
 
         {/* Section Header */}
         <Reveal style={{ marginBottom: 65, textAlign: "center" }}>
@@ -67,7 +67,7 @@ export function CurriculumSection() {
           </p>
         </Reveal>
 
-        {/* Connected Winding Glowing Path & Timeline */}
+        {/* Connected Winding Timeline with Generous Card Spacing */}
         <div className="relative my-8">
 
           {/* Connected central line on desktop */}
@@ -75,20 +75,20 @@ export function CurriculumSection() {
             className="hidden md:block absolute left-1/2 top-8 bottom-8 -translate-x-1/2 w-1 rounded-full pointer-events-none z-0"
             style={{
               background: "linear-gradient(to bottom, #1FB6A6 0%, #3B82F6 40%, #6366f1 75%, #f43f5e 100%)",
-              boxShadow: "0 0 12px rgba(31, 182, 166, 0.4)",
+              boxShadow: "0 0 12px rgba(31, 182, 166, 0.35)",
             }}
           />
 
           {/* Mobile vertical line */}
           <div
-            className="block md:hidden absolute left-5 top-6 bottom-6 w-1 rounded-full pointer-events-none z-0"
+            className="block md:hidden absolute left-4 top-6 bottom-6 w-1 rounded-full pointer-events-none z-0"
             style={{
               background: "linear-gradient(to bottom, #1FB6A6 0%, #3B82F6 40%, #6366f1 75%, #f43f5e 100%)",
             }}
           />
 
           {/* Nodes along the path */}
-          <div className="flex flex-col gap-10 md:gap-14 relative z-10">
+          <div className="flex flex-col gap-12 md:gap-16 relative z-10">
             {PHASES.map((phase, idx) => {
               const isEven = idx % 2 === 0;
               const floatClass = floatClasses[idx % floatClasses.length];
@@ -97,48 +97,48 @@ export function CurriculumSection() {
               return (
                 <div
                   key={phase.label}
-                  className={`relative flex flex-col md:flex-row items-center ${isEven ? "md:flex-row" : "md:flex-row-reverse"} gap-6 md:gap-12`}
+                  className={`relative flex flex-col md:flex-row items-center ${isEven ? "md:flex-row" : "md:flex-row-reverse"} gap-6 md:gap-14`}
                 >
-                  {/* Floating Glass Node Content Card */}
+                  {/* Floating Glass Node Content Card with good space on all four sides */}
                   <motion.div
                     initial={{ opacity: 0, y: 30, x: isEven ? -20 : 20 }}
                     whileInView={{ opacity: 1, y: 0, x: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.7, delay: idx * 0.1, ease }}
-                    className={`w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0 ${floatClass}`}
+                    className={`w-full md:w-[calc(50%-2.5rem)] pl-10 md:pl-0 ${floatClass}`}
                     onMouseEnter={() => setHoveredPhase(idx)}
                     onMouseLeave={() => setHoveredPhase(null)}
                   >
                     <div
-                      className="rounded-[22px] p-6 md:p-7 relative overflow-hidden transition-all duration-300"
+                      className="rounded-[26px] p-8 sm:p-9 relative transition-all duration-300"
                       style={{
-                        background: "rgba(255, 255, 255, 0.88)",
+                        background: "rgba(255, 255, 255, 0.92)",
                         backdropFilter: "blur(28px) saturate(1.8)",
                         WebkitBackdropFilter: "blur(28px) saturate(1.8)",
-                        border: isHovered ? `1.5px solid ${phase.color}` : "1.5px solid rgba(226, 232, 240, 0.9)",
+                        border: isHovered ? `1.5px solid ${phase.color}` : "1.5px solid rgba(226, 232, 240, 0.95)",
                         boxShadow: isHovered
                           ? "0 24px 50px rgba(11, 16, 38, 0.10), inset 0 1.5px 0 rgba(255,255,255,1)"
                           : "0 14px 36px rgba(11, 16, 38, 0.05), inset 0 1.5px 0 rgba(255,255,255,1)",
                         transform: isHovered ? "translateY(-4px)" : "none",
                       }}
                     >
-                      {/* Top Accent Strip */}
+                      {/* Top Accent Strip with ample space */}
                       <div
                         style={{
-                          height: 3.5,
-                          borderRadius: 3,
-                          width: 38,
-                          marginBottom: 14,
+                          height: 4,
+                          borderRadius: 4,
+                          width: 44,
+                          marginBottom: 18,
                           background: phase.color,
                         }}
                       />
 
                       {/* Phase Header Banner */}
-                      <div className="flex items-center justify-between gap-3 mb-5">
+                      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 mb-6">
                         <div>
                           <div
                             style={{
-                              fontSize: 17,
+                              fontSize: 18,
                               fontWeight: 800,
                               color: D.t0,
                               fontFamily: D.sans,
@@ -147,13 +147,13 @@ export function CurriculumSection() {
                           >
                             {phase.label} Phase
                           </div>
-                          <div style={{ fontSize: 12, color: D.t2, fontFamily: D.sans, fontWeight: 500 }}>
+                          <div style={{ fontSize: 12.5, color: D.t2, fontFamily: D.sans, fontWeight: 500, marginTop: 2 }}>
                             {phase.weeks}
                           </div>
                         </div>
 
                         <span
-                          className="px-3 py-1 rounded-full text-xs font-bold"
+                          className="px-3.5 py-1 rounded-full text-xs font-bold whitespace-nowrap"
                           style={{
                             background: phase.soft,
                             color: phase.color,
@@ -164,24 +164,26 @@ export function CurriculumSection() {
                         </span>
                       </div>
 
-                      {/* Embedded Module Nodes */}
-                      <div className="flex flex-col gap-2.5">
+                      {/* Embedded Module Nodes with ample breathing room */}
+                      <div className="flex flex-col gap-3">
                         {phase.modules.map((mod, mi) => (
                           <div
                             key={mod}
-                            className="flex items-start gap-3.5 p-3.5 rounded-xl transition-all duration-200 group hover:bg-[#F8FAFC]"
+                            className="flex items-start gap-3.5 p-4 rounded-2xl transition-all duration-200 group hover:bg-[#F8FAFC]"
                             style={{
                               background: "#F8FAFC",
                               border: "1px solid #E2E8F0",
                             }}
                           >
                             <div
-                              className="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-black"
+                              className="w-7.5 h-7.5 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-black"
                               style={{
                                 background: "#ffffff",
                                 border: "1px solid #E2E8F0",
                                 color: phase.color,
                                 fontFamily: D.sans,
+                                width: 30,
+                                height: 30,
                               }}
                             >
                               {String(mi + 1).padStart(2, "0")}
@@ -193,12 +195,12 @@ export function CurriculumSection() {
                                   fontWeight: 600,
                                   color: D.t0,
                                   fontFamily: D.sans,
-                                  lineHeight: 1.45,
+                                  lineHeight: 1.5,
                                 }}
                               >
                                 {mod}
                               </div>
-                              <div style={{ fontSize: 11, color: D.t3, marginTop: 2, fontFamily: D.sans, fontWeight: 500 }}>
+                              <div style={{ fontSize: 11, color: D.t3, marginTop: 3, fontFamily: D.sans, fontWeight: 500 }}>
                                 Lecture {mi + 1} · 2–3 hrs
                               </div>
                             </div>
@@ -210,33 +212,33 @@ export function CurriculumSection() {
 
                   {/* Connected Timeline Marker Node */}
                   <div
-                    className="absolute md:static left-5 -translate-x-1/2 md:translate-x-0 z-20 flex items-center justify-center"
+                    className="absolute md:static left-4 -translate-x-1/2 md:translate-x-0 z-20 flex items-center justify-center"
                   >
                     <div
-                      className="w-9 h-9 rounded-full flex items-center justify-center relative bg-white shadow-md border-2"
+                      className="w-10 h-10 rounded-full flex items-center justify-center relative bg-white shadow-md border-2"
                       style={{
                         borderColor: phase.color,
                       }}
                     >
                       <div
-                        className="w-2.5 h-2.5 rounded-full"
+                        className="w-3 h-3 rounded-full"
                         style={{ background: phase.color }}
                       />
                     </div>
                   </div>
 
                   {/* Desktop empty spacer for 50/50 balance */}
-                  <div className="hidden md:block w-[calc(50%-2rem)]" />
+                  <div className="hidden md:block w-[calc(50%-2.5rem)]" />
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Learning Outcomes in Clean Card */}
-        <Reveal delay={0.2} style={{ marginTop: 60 }}>
+        {/* Learning Outcomes in Clean Card with generous space */}
+        <Reveal delay={0.2} style={{ marginTop: 65 }}>
           <div
-            className="rounded-[22px] p-7 sm:p-9 relative overflow-hidden"
+            className="rounded-[26px] p-8 sm:p-10 relative overflow-hidden"
             style={{
               background: "#F8FAFC",
               border: "1px solid #E2E8F0",
@@ -257,7 +259,7 @@ export function CurriculumSection() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-x-8 sm:gap-y-3 outcomes-grid">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-x-10 sm:gap-y-3.5 outcomes-grid">
               {OUTCOMES.map((o, i) => (
                 <motion.div
                   key={i}
@@ -265,7 +267,7 @@ export function CurriculumSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05, duration: 0.4 }}
-                  className="flex gap-2.5 items-start p-2 rounded-lg"
+                  className="flex gap-3 items-start p-2 rounded-lg"
                 >
                   <span style={{ color: D.teal, fontSize: 14, flexShrink: 0, marginTop: 1, fontWeight: 900 }}>✓</span>
                   <span style={{ fontSize: 13.5, color: D.t1, lineHeight: 1.6, fontFamily: D.sans, fontWeight: 500 }}>{o}</span>

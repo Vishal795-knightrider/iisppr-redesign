@@ -41,9 +41,9 @@ function PlanCard({ plan, index }) {
       {/* Featured gradient halo for Pre-Launch */}
       {plan.featured && (
         <div
-          className="absolute -inset-[2px] rounded-[26px] pointer-events-none transition-opacity duration-500"
+          className="absolute -inset-[2px] rounded-[28px] pointer-events-none transition-opacity duration-500"
           style={{
-            background: "linear-gradient(135deg, rgba(31,182,166,0.5) 0%, rgba(94,234,212,0.3) 50%, rgba(99,102,241,0.25) 100%)",
+            background: "linear-gradient(135deg, rgba(31,182,166,0.4) 0%, rgba(94,234,212,0.25) 50%, rgba(99,102,241,0.2) 100%)",
             filter: "blur(6px)",
             opacity: hov ? 0.9 : 0.4,
             zIndex: 0,
@@ -70,7 +70,7 @@ function PlanCard({ plan, index }) {
         </div>
       )}
 
-      {/* Main GSSoC Light Frosted Glass Card */}
+      {/* Main GSSoC Light Frosted Glass Card with Generous Breathing Room */}
       <motion.div
         onHoverStart={() => setHov(true)}
         onHoverEnd={() => setHov(false)}
@@ -78,15 +78,15 @@ function PlanCard({ plan, index }) {
           y: hov ? -12 : 0,
           scale: hov ? 1.015 : 1,
           boxShadow: hov
-            ? "0 30px 60px rgba(11, 16, 38, 0.12), inset 0 1.5px 0 rgba(255,255,255,1)"
+            ? "0 30px 60px rgba(11, 16, 38, 0.10), inset 0 1.5px 0 rgba(255,255,255,1)"
             : plan.featured
-              ? "0 22px 50px rgba(11, 16, 38, 0.09), inset 0 1.5px 0 rgba(255,255,255,1)"
-              : "0 16px 40px rgba(11, 16, 38, 0.06), inset 0 1.5px 0 rgba(255,255,255,1)",
+              ? "0 22px 50px rgba(11, 16, 38, 0.08), inset 0 1.5px 0 rgba(255,255,255,1)"
+              : "0 16px 40px rgba(11, 16, 38, 0.05), inset 0 1.5px 0 rgba(255,255,255,1)",
         }}
         transition={{ duration: 0.32, ease }}
-        className="relative z-10 rounded-[24px] p-7 md:p-8 flex flex-col justify-between h-full overflow-hidden transition-colors duration-300"
+        className="relative z-10 rounded-[26px] p-8 sm:p-9 flex flex-col justify-between h-full transition-colors duration-300"
         style={{
-          background: "rgba(255, 255, 255, 0.88)",
+          background: "rgba(255, 255, 255, 0.92)",
           backdropFilter: "blur(28px) saturate(1.8)",
           WebkitBackdropFilter: "blur(28px) saturate(1.8)",
           border: plan.featured
@@ -95,13 +95,13 @@ function PlanCard({ plan, index }) {
         }}
       >
         <div>
-          {/* GSSoC Top Accent Strip */}
+          {/* GSSoC Top Accent Strip with ample space */}
           <div
             style={{
-              height: 3.5,
-              borderRadius: 3,
-              width: 38,
-              marginBottom: 16,
+              height: 4,
+              borderRadius: 4,
+              width: 44,
+              marginBottom: 18,
               background: stripGradients[plan.id] || "linear-gradient(90deg, #1FB6A6, #5EEAD4)",
             }}
           />
@@ -133,7 +133,7 @@ function PlanCard({ plan, index }) {
               fontSize: 13.5,
               color: D.t2,
               lineHeight: 1.65,
-              marginBottom: 24,
+              marginBottom: 22,
               fontFamily: D.sans,
               minHeight: 44,
             }}
@@ -141,7 +141,7 @@ function PlanCard({ plan, index }) {
             {plan.desc}
           </p>
 
-          {/* Price Block in Soft Light Slate */}
+          {/* Price Block with good internal spacing */}
           <div
             className="rounded-2xl p-4 sm:p-5 mb-6"
             style={{
@@ -149,9 +149,9 @@ function PlanCard({ plan, index }) {
               border: "1px solid #E2E8F0",
             }}
           >
-            <div className="flex justify-between items-center mb-2.5">
+            <div className="flex justify-between items-center mb-2">
               <span style={{ fontSize: 12, color: D.t3, fontFamily: D.sans, fontWeight: 500 }}>Actual Fee</span>
-              <span style={{ fontSize: 14, color: D.t3, textDecoration: "line-through", fontFamily: D.sans, fontWeight: 500 }}>
+              <span style={{ fontSize: 13.5, color: D.t3, textDecoration: "line-through", fontFamily: D.sans, fontWeight: 500 }}>
                 ₹{plan.actualFee.toLocaleString("en-IN")}
               </span>
             </div>
@@ -163,10 +163,10 @@ function PlanCard({ plan, index }) {
                   <span
                     style={{
                       fontFamily: D.sans,
-                      fontSize: 42,
+                      fontSize: 38,
                       fontWeight: 900,
                       color: D.t0,
-                      letterSpacing: "-2px",
+                      letterSpacing: "-1.5px",
                       lineHeight: 1,
                     }}
                   >
@@ -181,7 +181,7 @@ function PlanCard({ plan, index }) {
                   border: "1px solid rgba(31, 182, 166, 0.25)",
                 }}
               >
-                <div style={{ fontFamily: D.sans, fontSize: 16, fontWeight: 800, color: D.teal }}>
+                <div style={{ fontFamily: D.sans, fontSize: 15, fontWeight: 800, color: D.teal }}>
                   {plan.saving}
                 </div>
                 <div style={{ fontSize: 9.5, color: D.teal, fontFamily: D.sans, fontWeight: 600 }}>OFF</div>
@@ -210,18 +210,18 @@ function PlanCard({ plan, index }) {
           </motion.a>
 
           {/* Divider line */}
-          <div className="h-[1px] bg-slate-200 mb-5" />
+          <div className="h-[1px] bg-slate-100 mb-5" />
 
           {/* Plan features list */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-3">
             {plan.features.map(f => (
               <div
                 key={f.text}
-                className="flex items-center gap-2.5 transition-opacity duration-200"
+                className="flex items-center gap-3 transition-opacity duration-200"
                 style={{ opacity: f.yes ? 1 : 0.35 }}
               >
                 <div
-                  className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-black"
+                  className="w-4.5 h-4.5 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-black"
                   style={{
                     background: f.yes ? "rgba(31, 182, 166, 0.12)" : "#f1f5f9",
                     color: f.yes ? D.teal : D.t3,
@@ -245,9 +245,9 @@ function PlanCard({ plan, index }) {
           </div>
         </div>
 
-        {/* Informational note footer */}
+        {/* Informational note footer with ample space on all sides */}
         <div
-          className="mt-6 p-3 rounded-xl text-[11.5px] leading-relaxed"
+          className="mt-6 p-3.5 rounded-xl text-[12px] leading-relaxed"
           style={{
             background: "#F8FAFC",
             border: "1px solid #E2E8F0",

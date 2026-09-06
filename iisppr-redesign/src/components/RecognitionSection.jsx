@@ -94,37 +94,37 @@ export function RecognitionSection() {
                       scale: isHovered ? 1.015 : 1,
                     }}
                     transition={{ duration: 0.32 }}
-                    className="rounded-[24px] p-7 sm:p-8 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300"
+                    className="rounded-[26px] p-8 sm:p-9 flex flex-col justify-between h-full relative overflow-hidden transition-all duration-300"
                     style={{
-                      background: "rgba(255, 255, 255, 0.88)",
+                      background: "rgba(255, 255, 255, 0.92)",
                       backdropFilter: "blur(28px) saturate(1.8)",
                       WebkitBackdropFilter: "blur(28px) saturate(1.8)",
                       border: isGold
                         ? (isHovered ? "1.5px solid rgba(245, 158, 11, 0.6)" : "1.5px solid rgba(245, 158, 11, 0.3)")
                         : (isHovered ? "1.5px solid rgba(31, 182, 166, 0.5)" : "1.5px solid rgba(226, 232, 240, 0.9)"),
                       boxShadow: isHovered
-                        ? "0 28px 56px rgba(11, 16, 38, 0.12), inset 0 1.5px 0 rgba(255,255,255,1)"
-                        : "0 16px 40px rgba(11, 16, 38, 0.06), inset 0 1.5px 0 rgba(255,255,255,1)",
+                        ? "0 28px 56px rgba(11, 16, 38, 0.10), inset 0 1.5px 0 rgba(255,255,255,1)"
+                        : "0 16px 40px rgba(11, 16, 38, 0.05), inset 0 1.5px 0 rgba(255,255,255,1)",
                     }}
                   >
                     <div>
-                      {/* Top Accent Strip */}
+                      {/* Top Accent Strip with ample breathing room */}
                       <div
                         style={{
-                          height: 3.5,
-                          borderRadius: 3,
-                          width: 38,
-                          marginBottom: 18,
+                          height: 4,
+                          borderRadius: 4,
+                          width: 44,
+                          marginBottom: 20,
                           background: stripGradients[i],
                         }}
                       />
 
                       {/* Icon */}
                       <div
-                        className="w-13 h-13 rounded-2xl flex items-center justify-center text-2xl mb-4"
+                        className="w-13 h-13 rounded-2xl flex items-center justify-center text-2xl mb-4.5"
                         style={{
-                          background: isGold ? "rgba(245, 158, 11, 0.12)" : "rgba(31, 182, 166, 0.08)",
-                          border: isGold ? "1px solid rgba(245, 158, 11, 0.25)" : "1px solid rgba(31, 182, 166, 0.2)",
+                          background: isGold ? "rgba(245, 158, 11, 0.10)" : "rgba(31, 182, 166, 0.08)",
+                          border: isGold ? "1px solid rgba(245, 158, 11, 0.22)" : "1px solid rgba(31, 182, 166, 0.2)",
                         }}
                       >
                         {card.icon}
@@ -138,7 +138,7 @@ export function RecognitionSection() {
                           letterSpacing: "0.8px",
                           textTransform: "uppercase",
                           fontFamily: D.sans,
-                          marginBottom: 6,
+                          marginBottom: 8,
                           color: isGold ? "#d97706" : D.teal,
                         }}
                       >
@@ -152,22 +152,22 @@ export function RecognitionSection() {
                           fontSize: 22,
                           fontWeight: 800,
                           letterSpacing: "-0.4px",
-                          marginBottom: 10,
+                          marginBottom: 12,
                           color: D.t0,
                         }}
                       >
                         {card.title}
                       </div>
 
-                      <p style={{ fontSize: 13.5, color: D.t2, lineHeight: 1.7, fontFamily: D.sans, marginBottom: 20 }}>
+                      <p style={{ fontSize: 13.5, color: D.t2, lineHeight: 1.75, fontFamily: D.sans, marginBottom: 24 }}>
                         {card.body}
                       </p>
                     </div>
                     
-                    {/* Benefits bullet points */}
-                    <div className="flex flex-col gap-2.5 pt-4 border-t border-slate-200">
+                    {/* Benefits bullet points with generous margins and padding */}
+                    <div className="flex flex-col gap-3 pt-5 pb-2 border-t border-slate-100">
                       {card.bullets.map(b => (
-                        <div key={b} className="flex gap-2.5 items-start">
+                        <div key={b} className="flex gap-3 items-start">
                           <span
                             style={{
                               color: isGold ? "#d97706" : D.teal,
